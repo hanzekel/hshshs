@@ -70,23 +70,29 @@ body {
 
 .hidden { display: none; }
 
-/* SECRET HOVER CONTAINER */
+/* --- UPDATED: SECRET MESSAGE (VISIBLE & PULSING) --- */
 .secret-container {
     margin-top: 20px;
     font-size: 0.9rem;
     color: var(--text-color);
-    opacity: 0; /* Invisible */
-    transition: all 0.5s ease;
+    /* Make it semi-visible so people notice it */
+    opacity: 0.5; 
+    transition: all 0.3s ease;
     cursor: pointer;
-    padding: 10px;
-    border: 1px dashed rgba(255, 71, 87, 0.2);
-    border-radius: 10px;
+    padding: 12px;
+    /* Clear dashed border */
+    border: 2px dashed rgba(255, 71, 87, 0.4); 
+    border-radius: 12px;
+    /* Add pulsing animation */
+    animation: secret-pulse 2s infinite ease-in-out;
 }
 
 .secret-container:hover {
-    opacity: 1; /* Visible on hover */
+    opacity: 1; /* Fully visible on hover/tap */
     transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.6);
+    border-color: var(--button-color);
+    animation: none; /* Stop pulsing when interacted with */
 }
 
 /* LOVE METER */
@@ -156,4 +162,44 @@ h2 { color: #ff8787; }
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+/* --- NEW: OVERLAY STYLES (For Auto-Music) --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--background-color-1), var(--background-color-2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.overlay-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.hidden-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes secret-pulse {
+    0% { opacity: 0.4; transform: scale(0.98); }
+    50% { opacity: 0.7; transform: scale(1.02); }
+    100% { opacity: 0.4; transform: scale(0.98); }
+}
+
+@keyframes bounce {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
 }
