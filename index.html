@@ -25,7 +25,7 @@
             <h2 id="question1Text"></h2>
             <div class="btn-group">
                 <button class="cute-btn" onclick="showNextQuestion(2)" id="yesBtn1"></button>
-                <button class="cute-btn" onclick="moveButton(this)" id="noBtn1"></button>
+                <button class="cute-btn" onclick="showNextQuestion(2)" id="noBtn1"></button>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
             <h2 id="question2Text"></h2>
             <div class="btn-group">
                 <button class="cute-btn" onclick="showNextQuestion(3)" id="yesBtn2"></button>
-                <button class="cute-btn" onclick="moveButton(this)" id="noBtn2"></button>
+                <button class="cute-btn" onclick="showNextQuestion(3)" id="noBtn2"></button>
             </div>
         </div>
 
@@ -62,6 +62,7 @@
             <h2 id="question4Text"></h2>
             <div class="btn-group">
                 <button class="cute-btn final-yes" onclick="showNextQuestion(5)" id="yesBtn4"></button>
+                
                 <button class="cute-btn" onclick="moveButton(this)" id="noBtn4"></button>
             </div>
         </div>
@@ -85,21 +86,16 @@
     <script src="theme.js"></script>
     
     <script>
-        // Simple function to handle switching between the 5 questions
         function showNextQuestion(nextId) {
-            // Hide all questions
             document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
-            // Show the next one
             const nextQuestion = document.getElementById('question' + nextId);
             if (nextQuestion) {
                 nextQuestion.classList.remove('hidden');
             }
         }
-
-        // Function for the Secret Button (Question 3)
         function showSecretDate() {
             alert("Date Treat Unlocked! 📅💖\nSee you after exams!");
-            showNextQuestion(4); // Skip to the proposal
+            showNextQuestion(4);
         }
     </script>
     <script src="script.js"></script>
