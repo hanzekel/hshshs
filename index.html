@@ -17,7 +17,6 @@
             <button id="musicToggle" class="music-btn">🎵 Play Music</button>
             <audio id="bgMusic" loop>
                 <source id="musicSource" type="audio/mpeg">
-                Your browser does not support the audio element.
             </audio>
         </div>
 
@@ -39,20 +38,10 @@
 
         <div class="question-section hidden" id="question3">
             <h2 id="question3Text"></h2>
-            
-            <div class="love-meter">
-                <input type="range" min="0" max="10000" value="100" class="slider" id="loveMeter">
-                <p>
-                    <span class="love-value-container">
-                        <span id="startText"></span> 
-                        (<span id="loveValue">100</span>%)
-                    </span>
-                    <span id="extraLove" class="hidden"></span>
-                </p>
+            <div class="btn-group">
+                <button class="cute-btn" onclick="showNextQuestion(4)" id="yesBtn3"></button>
+                <button class="cute-btn" onclick="showNextQuestion(4)" id="noBtn3"></button>
             </div>
-
-            <button class="cute-btn" onclick="showNextQuestion(4)" id="nextBtn3"></button>
-
             <div class="secret-answer" style="margin-top: 20px;">
                 <button class="cute-btn special" onclick="showSecretDate()" id="secretAnswerBtn" style="font-size: 0.8rem; opacity: 0.7;"></button>
             </div>
@@ -62,7 +51,6 @@
             <h2 id="question4Text"></h2>
             <div class="btn-group">
                 <button class="cute-btn final-yes" onclick="showNextQuestion(5)" id="yesBtn4"></button>
-                
                 <button class="cute-btn" onclick="moveButton(this)" id="noBtn4"></button>
             </div>
         </div>
@@ -70,9 +58,23 @@
         <div class="question-section hidden" id="question5">
             <h2 id="question5Text"></h2>
             <div class="btn-group">
-                <button class="cute-btn" onclick="celebrate()" id="yesBtn5"></button>
-                <button class="cute-btn" onclick="celebrate()" id="noBtn5"></button>
+                <button class="cute-btn" onclick="showLoveMeter()" id="yesBtn5"></button>
+                <button class="cute-btn" onclick="showLoveMeter()" id="noBtn5"></button>
             </div>
+        </div>
+
+        <div class="question-section hidden" id="loveMeterSection">
+            <h2>Send some love! 💖</h2>
+            <div class="love-meter">
+                <input type="range" min="0" max="10000" value="100" class="slider" id="loveMeter">
+                <p>
+                    <span class="love-value-container">
+                        (<span id="loveValue">100</span>%)
+                    </span>
+                    <span id="extraLove" class="hidden"></span>
+                </p>
+            </div>
+            <button class="cute-btn" onclick="celebrate()" style="margin-top: 20px;">Submit Love 💘</button>
         </div>
 
         <div class="celebration hidden" id="celebration">
@@ -84,20 +86,6 @@
 
     <script src="config.js"></script>
     <script src="theme.js"></script>
-    
-    <script>
-        function showNextQuestion(nextId) {
-            document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
-            const nextQuestion = document.getElementById('question' + nextId);
-            if (nextQuestion) {
-                nextQuestion.classList.remove('hidden');
-            }
-        }
-        function showSecretDate() {
-            alert("Date Treat Unlocked! 📅💖\nSee you after exams!");
-            showNextQuestion(4);
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
