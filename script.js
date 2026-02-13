@@ -58,24 +58,49 @@ window.addEventListener('DOMContentLoaded', () => {
     // Validate configuration first
     validateConfig();
 
-    // Set texts from config
-    document.getElementById('valentineTitle').textContent = `${config.valentineName}, my love...`;
-    
-    // Set first question texts
-    document.getElementById('question1Text').textContent = config.questions.first.text;
-    document.getElementById('yesBtn1').textContent = config.questions.first.yesBtn;
-    document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
-    document.getElementById('secretAnswerBtn').textContent = config.questions.first.secretAnswer;
-    
-    // Set second question texts
-    document.getElementById('question2Text').textContent = config.questions.second.text;
-    document.getElementById('startText').textContent = config.questions.second.startText;
-    document.getElementById('nextBtn').textContent = config.questions.second.nextBtn;
-    
-    // Set third question texts
-    document.getElementById('question3Text').textContent = config.questions.third.text;
-    document.getElementById('yesBtn3').textContent = config.questions.third.yesBtn;
-    document.getElementById('noBtn3').textContent = config.questions.third.noBtn;
+    // Set Main Title (using the pageTitle from config)
+    document.getElementById('valentineTitle').textContent = config.pageTitle;
+
+    // --- 1. First Question ---
+    if (config.questions.first) {
+        document.getElementById('question1Text').textContent = config.questions.first.text;
+        document.getElementById('yesBtn1').textContent = config.questions.first.yesBtn;
+        document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
+    }
+
+    // --- 2. Second Question ---
+    if (config.questions.second) {
+        document.getElementById('question2Text').textContent = config.questions.second.text;
+        document.getElementById('yesBtn2').textContent = config.questions.second.yesBtn;
+        document.getElementById('noBtn2').textContent = config.questions.second.noBtn;
+    }
+
+    // --- 3. Third Question (Love Meter + Secret) ---
+    if (config.questions.third) {
+        document.getElementById('question3Text').textContent = config.questions.third.text;
+        document.getElementById('startText').textContent = config.questions.third.startText;
+        document.getElementById('nextBtn3').textContent = config.questions.third.nextBtn;
+        
+        // Secret Answer Button
+        const secretBtn = document.getElementById('secretAnswerBtn');
+        if (secretBtn && config.questions.third.secretAnswer) {
+            secretBtn.textContent = config.questions.third.secretAnswer;
+        }
+    }
+
+    // --- 4. Fourth Question (Proposal) ---
+    if (config.questions.fourth) {
+        document.getElementById('question4Text').textContent = config.questions.fourth.text;
+        document.getElementById('yesBtn4').textContent = config.questions.fourth.yesBtn;
+        document.getElementById('noBtn4').textContent = config.questions.fourth.noBtn;
+    }
+
+    // --- 5. Fifth Question (Goodluck) ---
+    if (config.questions.fifth) {
+        document.getElementById('question5Text').textContent = config.questions.fifth.text;
+        document.getElementById('yesBtn5').textContent = config.questions.fifth.yesBtn;
+        document.getElementById('noBtn5').textContent = config.questions.fifth.noBtn;
+    }
 
     // Create initial floating elements
     createFloatingElements();
@@ -116,8 +141,20 @@ function setRandomPosition(element) {
 
 // Function to show next question
 function showNextQuestion(questionNumber) {
+    // Hide all questions
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
-    document.getElementById(`question${questionNumber}`).classList.remove('hidden');
+    
+    // Show the specific question
+    const nextQuestion = document.getElementById(`question${questionNumber}`);
+    if (nextQuestion) {
+        nextQuestion.classList.remove('hidden');
+    }
+}
+
+// Function specifically for the Secret Date button
+function showSecretDate() {
+    alert("Date Treat Unlocked! 📅💖\nSee you after exams!");
+    showNextQuestion(4); // Skip to the proposal
 }
 
 // Function to move the "No" button when clicked
@@ -135,39 +172,42 @@ const loveValue = document.getElementById('loveValue');
 const extraLove = document.getElementById('extraLove');
 
 function setInitialPosition() {
+    if (!loveMeter) return; // Guard clause in case element is missing
     loveMeter.value = 100;
     loveValue.textContent = 100;
     loveMeter.style.width = '100%';
 }
 
-loveMeter.addEventListener('input', () => {
-    const value = parseInt(loveMeter.value);
-    loveValue.textContent = value;
-    
-    if (value > 100) {
-        extraLove.classList.remove('hidden');
-        const overflowPercentage = (value - 100) / 9900;
-        const extraWidth = overflowPercentage * window.innerWidth * 0.8;
-        loveMeter.style.width = `calc(100% + ${extraWidth}px)`;
-        loveMeter.style.transition = 'width 0.3s';
+if (loveMeter) {
+    loveMeter.addEventListener('input', () => {
+        const value = parseInt(loveMeter.value);
+        loveValue.textContent = value;
         
-        // Show different messages based on the value
-        if (value >= 5000) {
-            extraLove.classList.add('super-love');
-            extraLove.textContent = config.loveMessages.extreme;
-        } else if (value > 1000) {
-            extraLove.classList.remove('super-love');
-            extraLove.textContent = config.loveMessages.high;
+        if (value > 100) {
+            extraLove.classList.remove('hidden');
+            const overflowPercentage = (value - 100) / 9900;
+            const extraWidth = overflowPercentage * window.innerWidth * 0.8;
+            loveMeter.style.width = `calc(100% + ${extraWidth}px)`;
+            loveMeter.style.transition = 'width 0.3s';
+            
+            // Show different messages based on the value
+            if (value >= 5000) {
+                extraLove.classList.add('super-love');
+                extraLove.textContent = config.loveMessages.extreme;
+            } else if (value > 1000) {
+                extraLove.classList.remove('super-love');
+                extraLove.textContent = config.loveMessages.high;
+            } else {
+                extraLove.classList.remove('super-love');
+                extraLove.textContent = config.loveMessages.normal;
+            }
         } else {
+            extraLove.classList.add('hidden');
             extraLove.classList.remove('super-love');
-            extraLove.textContent = config.loveMessages.normal;
+            loveMeter.style.width = '100%';
         }
-    } else {
-        extraLove.classList.add('hidden');
-        extraLove.classList.remove('super-love');
-        loveMeter.style.width = '100%';
-    }
-});
+    });
+}
 
 // Initialize love meter
 window.addEventListener('DOMContentLoaded', setInitialPosition);
@@ -239,4 +279,4 @@ function setupMusicPlayer() {
             musicToggle.textContent = config.music.startText;
         }
     });
-} 
+}
