@@ -11,23 +11,23 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
     }
 
-    // --- 2. Question 2 (With Secret Hover) ---
+    // --- 2. Question 2 ---
     if (config.questions.second) {
         document.getElementById('question2Text').textContent = config.questions.second.text;
         document.getElementById('yesBtn2').textContent = config.questions.second.yesBtn;
         document.getElementById('noBtn2').textContent = config.questions.second.noBtn;
-        
-        // Secret Hover Message
-        if (config.questions.second.secretAnswer) {
-            document.getElementById('secretMessage').textContent = config.questions.second.secretAnswer;
-        }
     }
 
-    // --- 3. Question 3 (Buttons mapped from startText/nextBtn) ---
+    // --- 3. Question 3 ("Merooon" + SECRET) ---
     if (config.questions.third) {
         document.getElementById('question3Text').textContent = config.questions.third.text;
         document.getElementById('yesBtn3').textContent = config.questions.third.startText; // "Merooon"
         document.getElementById('noBtn3').textContent = config.questions.third.nextBtn;   // "Baka umuwi"
+        
+        // This maps the secret answer!
+        if (config.questions.third.secretAnswer) {
+            document.getElementById('secretMessage').textContent = config.questions.third.secretAnswer;
+        }
     }
 
     // --- 4. Question 4 (Proposal) ---
@@ -103,7 +103,7 @@ if (loveMeter) {
 // --- CELEBRATION ---
 function celebrate() {
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
-    document.getElementById('loveMeterSection').classList.add('hidden'); // Hide meter too
+    document.getElementById('loveMeterSection').classList.add('hidden'); 
     
     const celebration = document.getElementById('celebration');
     celebration.classList.remove('hidden');
@@ -115,7 +115,7 @@ function celebrate() {
     createHeartExplosion();
 }
 
-// --- MUSIC (LOCAL FILE) ---
+// --- MUSIC ---
 function setupMusicPlayer() {
     const musicControls = document.getElementById('musicControls');
     const musicToggle = document.getElementById('musicToggle');
