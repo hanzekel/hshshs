@@ -1,57 +1,55 @@
-// ============================================
-// 💝 CUSTOMIZE YOUR VALENTINE'S WEBSITE HERE 💝
-// ============================================
-
 const CONFIG = {
-    // Your Valentine's name that will appear in the title
-    // Example: "Jade", "Sarah", "Mike"
-    valentineName: "Jade",
+    valentineName: "Syril",
 
-    // The title that appears in the browser tab
-    // You can use emojis! 💝 💖 💗 💓 💞 💕
-    pageTitle: "Will You Be My Valentine? 💝",
+    pageTitle: "HI PO HEHE ISTORBOHIN LANG KITA SAGLIT",
 
-    // Floating emojis that appear in the background
-    // Find more emojis at: https://emojipedia.org
     floatingEmojis: {
-        hearts: ['❤️', '💖', '💝', '💗', '💓'],  // Heart emojis
-        bears: ['🧸', '🐻']                       // Cute bear emojis
+        hearts: ['❤️', '💖', '💝', '💗', '💓'],  
+        bears: ['🧸', '🐻']                      
     },
 
-    // Questions and answers
-    // Customize each question and its possible responses
     questions: {
         first: {
-            text: "Do you like me?",                                    // First interaction
-            yesBtn: "Yes",                                             // Text for "Yes" button
-            noBtn: "No",                                               // Text for "No" button
-            secretAnswer: "I don't like you, I love you! ❤️"           // Secret hover message
+            text: "hindi naman nakakagulat ano",                                    
+            yesBtn: "Nagulat ako",                                             
+            noBtn: "Hindi ako nagulat",                                            
         },
         second: {
-            text: "How much do you love me?",                          // For the love meter
-            startText: "This much!",                                   // Text before the percentage
-            nextBtn: "Next ❤️"                                         // Text for the next button
+            text: "anw unahan ko na sila, happy hearts day! 💝 kamusta review?",                                   
+            yesBtn: "Ok lang",                                             
+            noBtn: "Mahirap",                                                  
         },
         third: {
-            text: "Will you be my Valentine on February 14th, 2025? 🌹", // The big question!
-            yesBtn: "Yes!",                                             // Text for "Yes" button
-            noBtn: "No"                                                 // Text for "No" button
-        }
+          text: "may lakad ka ba after exams mo?",                          
+            startText: "Meroooon!",                                   
+            nextBtn: "baka umuwi agad",
+            secretAnswer: "wala? tara date treat ko!",                                             
+        },
+        fourth: {
+            text: "Will you be my Valentine? (nilakasan loob at kinapalan ang mukha)", 
+            yesBtn: "Yes!",                                            
+            noBtn: "No",                                                
+        },
+        fifth: {
+            text: "Thank you! Goodluck sa exams mo later, Sy!", 
+            yesBtn: "100% papasa",                                             
+            noBtn: "Basic midterms lang 'to",                                                
+        },
     },
 
     // Love meter messages
     // They show up depending on how far they slide the meter
     loveMessages: {
-        extreme: "WOOOOW You love me that much?? 🥰🚀💝",  // Shows when they go past 5000%
-        high: "To infinity and beyond! 🚀💝",              // Shows when they go past 1000%
-        normal: "And beyond! 🥰"                           // Shows when they go past 100%
+        extreme: "p.s hindi to social experiment",  // Shows when they go past 5000%
+        high: "Naisip ko lang na batiin ka",              // Shows when they go past 1000%
+        normal: "coz u deserve it"                           // Shows when they go past 100%
     },
 
     // Messages that appear after they say "Yes!"
     celebration: {
-        title: "Yay! I'm the luckiest person in the world! 🎉💝💖💝💓",
-        message: "Now come get your gift, a big warm hug and a huge kiss!",
-        emojis: "🎁💖🤗💝💋❤️💕"  // These will bounce around
+        title: "thank you Lord, answered prayers! 🥰",  // Main title after they say yes
+        message: "kitakits po!",  // Sub-message after they say yes
+        emojis: "🎁💖🤗💝"  // These will bounce around
     },
 
     // Color scheme for the website
