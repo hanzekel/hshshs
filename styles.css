@@ -86,6 +86,26 @@ body {
     pointer-events: none;
 }
 
+/* --- NEW: Secret Hover Container --- */
+.secret-container {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0; /* Invisible by default */
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 1px dashed rgba(255, 71, 87, 0.3); /* Optional: faint dashed border to hint something is there */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.secret-container:hover {
+    opacity: 1; /* Fully visible when you hover */
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Legacy Secret Answer (Fixed Position) - Keeping just in case */
 .secret-answer {
     position: fixed;
     bottom: 20px;
@@ -109,6 +129,7 @@ body {
     animation: none;
 }
 
+/* --- Love Meter Styles --- */
 .love-meter {
     position: relative;
     width: 100%;
@@ -146,7 +167,6 @@ body {
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
 }
 
-/* Ensure track is visible */
 .slider::-webkit-slider-runnable-track,
 .slider::-moz-range-track {
     width: 100%;
@@ -156,7 +176,6 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Ensure thumb is properly styled */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 35px;
@@ -229,12 +248,8 @@ body {
 }
 
 @keyframes bounce {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.2);
-    }
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
 }
 
 .hearts-explosion {
@@ -244,15 +259,9 @@ body {
 }
 
 @keyframes explode {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(var(--heart-explosion-size));
-    }
-    100% {
-        transform: scale(1);
-    }
+    0% { transform: scale(0); }
+    50% { transform: scale(var(--heart-explosion-size)); }
+    100% { transform: scale(1); }
 }
 
 h1, h2 {
@@ -278,7 +287,6 @@ h2 {
     text-shadow: 2px 2px 4px rgba(255, 71, 87, 0.3);
 }
 
-
 .celebration-text {
     font-size: 3em;
     color: #ff4757;
@@ -301,7 +309,7 @@ h2 {
 }
 
 .music-btn {
-    background: var(--primary-color);
+    background: var(--button-color); /* Fixed: Was using undefined var(--primary-color) */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -314,5 +322,5 @@ h2 {
 
 .music-btn:hover {
     transform: scale(1.05);
-    background: var(--secondary-color);
-} 
+    background: var(--button-hover); /* Fixed: Was using undefined var(--secondary-color) */
+}
